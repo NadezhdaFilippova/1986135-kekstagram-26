@@ -12,8 +12,11 @@ const previewLikes = preview.querySelector('.likes-count');
 const previewComments = preview.querySelector('.social__comments');
 const commentTemplate = preview.querySelector('.social__comment');
 const commentsLoaderButton = preview.querySelector('.comments-loader');
-const commentCounter = preview.querySelector('.social__comment-count');
+const commentsCounted = preview.querySelector('.social__comment-count');
+// const commentsLoaded = preview.querySelector('.social__comment-loaded');
 const previewCloseButton = preview.querySelector('.cancel');
+
+let commentCounter = 0;
 
 // наполняетDOM-элемент 'Полноэкранный показ изображения' данными из pictures
 
@@ -58,11 +61,17 @@ function onPopupEscKeydown (evt) {
 const openPreview = (photo) => {
   preview.classList.remove('hidden');
   body.classList.add('modal-open');
-  commentsLoaderButton.classList.add('hidden');
-  commentCounter.classList.add('hidden');
   fillPreview(photo);
   previewCloseButton.addEventListener('click', onPreviewClose);
   document.addEventListener('keydown', onPopupEscKeydown);
 };
+
+const showCommentsLoaderButton =()=> {
+  commentsLoaderButton.classList.remove('hidden');
+};
+
+const hideCommentsLoaderButton = () => {
+  commentsLoaderButton.classList.add('hidden');
+}
 
 export {openPreview};
